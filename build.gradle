@@ -1,0 +1,47 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+plugins {
+    id "org.sonarqube" version "2.0.1"
+}
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+apply plugin: 'spring-boot'
+
+group 'com.novacroft'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+jar {
+    baseName = rootProject.name
+}
+configurations {
+    //compile.exclude module: 'logback-classic'
+    compile.exclude module: 'tomcat-servlet-api'
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.ws:spring-ws-core")
+    compile("org.apache.commons:commons-lang3:3.4")
+    testCompile("junit:junit:4.12")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.mockito:mockito-core:1.+")
+    testCompile 'org.powermock:powermock-mockito-release-full:1.6.4'
+}
