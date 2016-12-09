@@ -14,7 +14,7 @@
 
         <createTable tableName="user">
             <column autoIncrement="true" name="id" type="bigint">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="id"/>
+                <constraints primaryKeyName="user_primary_key" nullable="false" primaryKey="true"/>
             </column>
             <column name="username" type="varchar(20)"/>
             <column name="password" type="varchar(30)"/>

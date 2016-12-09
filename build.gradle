@@ -28,6 +28,11 @@ repositories {
 jar {
     baseName = rootProject.name
 }
+
+bootRun {
+    systemProperties System.properties
+}
+
 configurations {
     //compile.exclude module: 'logback-classic'
     compile.exclude module: 'tomcat-servlet-api'
@@ -41,7 +46,6 @@ dependencies {
     compile("org.springframework.ws:spring-ws-core")
     compile("org.apache.commons:commons-lang3:3.4")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile("org.liquibase:liquibase-core:3.5.0")
     compile group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
 
