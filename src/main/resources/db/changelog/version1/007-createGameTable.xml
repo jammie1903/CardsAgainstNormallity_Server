@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+
+    <changeSet author="cards-against-normallity" id="CARDS-007">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="game"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="game">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKeyName="game_primary_key" nullable="false" primaryKey="true"/>
+            </column>
+            <column name="hostUserId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_game_host_id" references="user(id)"/>
+            </column>
+            <column name="currentCardMasterId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_game_card_master_id" references="user(id)"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="game"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

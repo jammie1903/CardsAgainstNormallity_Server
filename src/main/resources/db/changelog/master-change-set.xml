@@ -7,4 +7,11 @@
     <include file="db/changelog/version1/001-createUserTable.xml"/>
     <include file="db/changelog/version1/002-createQuestionTable.xml"/>
     <include file="db/changelog/version1/003-createAnswerTable.xml"/>
+    <include file="db/changelog/version1/004-addLoginTokenAndLastReadDate.xml"/>
+    <include file="db/changelog/version1/005-createFriendTable.xml"/>
+    <include file="db/changelog/version1/006-createFriendRequestTable.xml"/>
+    <include file="db/changelog/version1/007-createGameTable.xml"/>
+    <include file="db/changelog/version1/008-createGamePlayerTable.xml"/>
+    <include file="db/changelog/version1/009-createGameQuestionDeckTable.xml"/>
+    <include file="db/changelog/version1/010-createGameAnswerDeckTable.xml"/>
 </databaseChangeLog>

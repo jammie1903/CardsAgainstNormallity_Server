@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+
+    <changeSet author="cards-against-normallity" id="CARDS-010">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="gameAnswerDeck"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="gameAnswerDeck">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKeyName="gameAnswerDeck_primary_key" nullable="false" primaryKey="true"/>
+            </column>
+            <column name="gameId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_gameAnswerDeck_game_id" references="game(id)"/>
+            </column>
+            <column name="questionId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_gameAnswerDeck_answer_id" references="answer(id)"/>
+            </column>
+            <column name="order" type="int"/>
+            <column name="playerHandId" type="bigint">
+                <!--<constraints nullable="true" foreignKeyName="fk_gameAnswerDeck_player_hand_id" references="gamePlayer(id)"/>-->
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="gameAnswerDeck"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
